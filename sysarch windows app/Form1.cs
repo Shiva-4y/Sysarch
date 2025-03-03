@@ -46,34 +46,67 @@ namespace sysarch_windows_app
                 }
             }
         }
-
-      
-        private void LoadDepartments(bool showAll =false)
-        {
-           using (MySqlConnection conn = new MySqlConnection(connectionString))
-    {
-
-        try
-        {
-            conn.Open();
-            string query = @"
-                SELECT d.DepartmentID, c.CollegeID, d.DepartmentName, d.DepartmentCode,  d.IsActive
-                FROM department d
-                INNER JOIN college c ON d.CollegeID = c.CollegeID
-                WHERE d.IsActive = 1";
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(query, conn))
+       //Yes or No not complete
+        /*    private void LoadDepartments(bool showAll = false)
             {
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridViewDepartments.DataSource = dt;
-            }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Error loading departments: " + ex.Message);
-        }
-    }
-        }
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    try
+                    {
+                        conn.Open();
+                        string query = @"
+                    SELECT d.DepartmentID, c.CollegeID, d.DepartmentName, d.DepartmentCode, d.IsActive
+                    FROM department d
+                    INNER JOIN college c ON d.CollegeID = c.CollegeID";
+
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(query, conn))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+
+                            // Convert 1/0 to Yes/No
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                row["IsActive"] = (Convert.ToInt32(row["IsActive"]) == 1) ? "Yes" : "No";
+                            }
+
+                            dataGridViewDepartments.DataSource = dt;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading departments: " + ex.Message);
+                    }
+                }
+            }*/
+
+
+        private void LoadDepartments(bool showAll = false)
+           {
+               using (MySqlConnection conn = new MySqlConnection(connectionString))
+               {
+
+                   try
+                   {
+                       conn.Open();
+                       string query = @"
+                   SELECT d.DepartmentID, c.CollegeID, d.DepartmentName, d.DepartmentCode,  d.IsActive
+                   FROM department d
+                   INNER JOIN college c ON d.CollegeID = c.CollegeID
+                   WHERE d.IsActive = 1";
+                       using (MySqlDataAdapter da = new MySqlDataAdapter(query, conn))
+                       {
+                           DataTable dt = new DataTable();
+                           da.Fill(dt);
+                           dataGridViewDepartments.DataSource = dt;
+                       }
+                   }
+                   catch (Exception ex)
+                   {
+                       MessageBox.Show("Error loading departments: " + ex.Message);
+                   }
+               }
+           }
 
 
 
@@ -109,7 +142,9 @@ namespace sysarch_windows_app
                     textBox3.Text = row.Cells[0].Value?.ToString();
                     textBox1.Text = row.Cells[1].Value?.ToString();
                     textBox2.Text = row.Cells[2].Value?.ToString();
-                    checkBox1.Checked = row.Cells[3].Value != DBNull.Value && Convert.ToBoolean(row.Cells[3].Value);
+                     checkBox1.Checked = row.Cells[3].Value != DBNull.Value && Convert.ToBoolean(row.Cells[3].Value);
+                   // checkBox1.Checked = row.Cells[4].Value?.ToString() == "Yes"; <- Yes or no
+
                 }
             }
         }
@@ -126,11 +161,11 @@ namespace sysarch_windows_app
                     {
                         cmd.Parameters.AddWithValue("@Name", textBox1.Text);
                         cmd.Parameters.AddWithValue("@Code", textBox2.Text);
-                        cmd.Parameters.AddWithValue("@CollegeID", comboBoxCollege.SelectedValue);  
+                        cmd.Parameters.AddWithValue("@CollegeID", comboBoxCollege.SelectedValue);
                         cmd.ExecuteNonQuery();
                     }
                     MessageBox.Show("Department added successfully!");
-                    LoadDepartments(); // Refresh DataGridView
+                    LoadDepartments(); 
                 }
                 catch (Exception ex)
                 {
@@ -148,7 +183,7 @@ namespace sysarch_windows_app
                     try
                     {
                         conn.Open();
-                        string query = "UPDATE department SET IsActive = 1 WHERE DepartmentID = @DepartmentID";
+                        string query = "UPDATE department SET IsActive = Yes WHERE DepartmentID = @DepartmentID";
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@DepartmentID", textBox3.Text);
@@ -231,7 +266,7 @@ namespace sysarch_windows_app
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-           // LoadColleges(checkBox2.Checked);
+            // LoadColleges(checkBox2.Checked);
             LoadDepartments(checkBox2.Checked);
         }
 
@@ -243,6 +278,11 @@ namespace sysarch_windows_app
         }
 
         private void comboBoxCollege_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
