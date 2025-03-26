@@ -58,7 +58,7 @@ namespace sysarch_windows_app
                     string query = "INSERT INTO college (CollegeName, CollegeCode, IsActive) VALUES (@CollegeName, @CollegeCode, 1)";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@ColllegeName", textBox1.Text);
+                        cmd.Parameters.AddWithValue("@CollegeName", textBox1.Text);
                         cmd.Parameters.AddWithValue("@CollegeCode", textBox2.Text);
                         cmd.ExecuteNonQuery();
                     }
