@@ -79,7 +79,7 @@ namespace sysarch_windows_app
                     }
                 }
             }*/
-
+        //Ang manok ni san pedro
 
         private void LoadDepartments(bool showAll = false)
            {
@@ -108,7 +108,7 @@ namespace sysarch_windows_app
                }
            }
 
-
+        //Code issues ni ha
 
 
         private bool ValidateInputs()
