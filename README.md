@@ -25,13 +25,15 @@ Pull Request Process: Code review before merging
  
 ## 🤝 Contributors
 John Paul Sanoria (Shiva-4y)
+
 Axell Senagan (axell27)
+
 Jarcel Franz Tubigon (willowpf)
 
-📌 Features
+## 📌 Features
 ✅ Create, Read, Update, Delete (CRUD)
 
-🛠️ Technologies Used
+## 🛠️ Technologies Used
 c# / Windowsform / MySQL (HeidiSQL)
 
 Git & GitHub for version control
