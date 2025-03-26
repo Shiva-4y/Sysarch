@@ -86,8 +86,8 @@ namespace sysarch_windows_app
                         string query = "UPDATE college SET CollegeName = @CollegeName, CollegeCode = @CollegeCode WHERE CollegeID = @CollegeID";
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
-                            //cmd.Parameters.AddWithValue("@CollegeID", collegeID);  
-                           // cmd.Parameters.AddWithValue("@CollegeName", textBox1.Text);
+                            cmd.Parameters.AddWithValue("@CollegeID", collegeID);  
+                           cmd.Parameters.AddWithValue("@CollegeName", textBox1.Text);
                             cmd.Parameters.AddWithValue("@CollegeCode", textBox2.Text);
                             cmd.ExecuteNonQuery();
                         }
