@@ -91,7 +91,7 @@ namespace sysarch_windows_app
                             cmd.Parameters.AddWithValue("@CollegeCode", textBox2.Text);
                             cmd.ExecuteNonQuery();
                         }
-                        MessageBox.Show("College updated successfully!");
+                        MessageBox.Show("College updated successfully!!");
                         LoadColleges();  
                     }
                     catch (Exception ex)
