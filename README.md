@@ -14,9 +14,9 @@ adding, updating, deleting(both ways).
 3. Configure your database in each form:
    ```sh
     private string connectionString = "server=127.0.0.1; database=your_databasename; uid=root; pwd=your_password;";
-1. Start the application.
-   ```sh
-   git clone https://github.com/your-username/Sysarch.git
+4. Start the application.
+ 
+
 
 
 
