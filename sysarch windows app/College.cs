@@ -147,7 +147,7 @@ namespace sysarch_windows_app
             if (e.RowIndex >= 0) // Ensure a row is selected (not the header)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
+//bomboclatttt fix kunohay
                 // Assuming you have textBox1 for CollegeName and textBox2 for CollegeCode
                 textBox1.Text = row.Cells["CollegeName"].Value.ToString();
                 textBox2.Text = row.Cells["CollegeCode"].Value.ToString();
