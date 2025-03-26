@@ -105,7 +105,7 @@ namespace sysarch_windows_app
                 MessageBox.Show("Please select a college to update.");
             }
         }
-
+//updated: delete button working
         private void Deletebtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0)
